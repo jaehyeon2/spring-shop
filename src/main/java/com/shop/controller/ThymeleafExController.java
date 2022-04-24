@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.dto.ItemDTO;
+import com.shop.repository.ItemRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,5 +51,28 @@ public class ThymeleafExController {
         return "thymeleafEx/thymeleafEx03";
     }
 
+    @GetMapping("/ex04")
+    public String thymeleafExample04(Model model){
+
+        List<ItemDTO> itemDTOList = new ArrayList<>();
+
+        for (int i=1; i<=10; i++){
+            ItemDTO itemDTO=new ItemDTO();
+            itemDTO.setItemDetail("상품 상세 설명");
+            itemDTO.setItemNm("테스트 상품"+i);
+            itemDTO.setPrice(1000*i);
+            itemDTO.setRegTime(LocalDateTime.now());
+
+            itemDTOList.add(itemDTO);
+        }
+
+        model.addAttribute("itemDTOList", itemDTOList);
+        return "thymeleafEx/thymeleafEx04";
+    }
+
+    @GetMapping("/ex05")
+    public String thymeleafExample05(Model model){
+        return "thymeleafEx/thymeleafEx05";
+    }
 
 }
